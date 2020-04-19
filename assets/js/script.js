@@ -1,6 +1,6 @@
 // setting functions up
 var city = "";
-var cities = "";
+var cities = [];
 var citiesDiv = $("#searched_cities_container");
 
 init();
@@ -14,7 +14,7 @@ function init() {
     cities = saved_cities;
   }
 
-  renderButtons();
+  renderCities();
 }
 
 function storeCities() {
@@ -26,11 +26,11 @@ function renderCities() {
   if (cities == null) {
     return;
   }
-  let unique_cities = [...new Set(cities)];
-  for (let i = 0; i < unique_cities.length; i++) {
-    let cityName = unique_cities[i];
+  var unique_cities = [...new Set(cities)];
+  for (var i = 0; i < unique_cities.length; i++) {
+    var cityName = unique_cities[i];
 
-    let buttonEl = document.createElement("button");
+    var buttonEl = document.createElement("button");
     buttonEl.textContent = cityName;
     buttonEl.setAttribute("class", "listbtn");
 
@@ -42,15 +42,14 @@ function listClick() {
   $(".listbtn").click(function (event) {
     event.preventDefault();
     city = $(this).text().trim();
-    APIcalls();
   });
 }
-function searchClicker() {
+function searchClick() {
   $("#searchbtn").click(function (event) {
     event.preventDefault();
     city = $(this).prev().val().trim();
 
-    cities.push(city);
+    /* cities.push(city); */
 
     if (cities.length > 8) {
       cities.shift();
@@ -59,21 +58,20 @@ function searchClicker() {
     if (city == "") {
       return;
     }
-    APIcalls();
+
     storeCities();
-    renderButtons();
+    renderCities();
   });
 }
 
 // AJAX Calls to API (One Call)
+
 var queryURL =
-  "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid=" +
-  apiKEY;
-var apiKEY = "dd95bf9ea6613905902595b35a625a38";
+  "http://api.openweathermap.org/data/2.5/onecall/lat={lat}&lon={lon}&dt=1586468027&appid=5ec4631ebf34de13f710029416628dff";
 
 $.ajax({
   url: queryURL,
   method: "GET",
 }).then(function (response) {
-  function currentWeather() {}
+  console.log(response);
 });
