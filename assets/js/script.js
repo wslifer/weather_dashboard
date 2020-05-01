@@ -98,7 +98,7 @@ function APIcalls() {
         );
         $("#" + day_number + "five_day_icon").attr(
           "src",
-          "http://openweathermap.org/img/w/" +
+          "https://openweathermap.org/img/w/" +
             response.list[i].weather[0].icon +
             ".png"
         );
@@ -125,7 +125,7 @@ function APIcalls() {
     $("#today_wind_speed").text("Wind Speed: " + current_data.wind.speed);
     $("#today_icon_div").attr({
       src:
-        "http://openweathermap.org/img/w/" +
+        "https://openweathermap.org/img/w/" +
         current_data.weather[0].icon +
         ".png",
       height: "100px",
