@@ -1,6 +1,6 @@
 // setting functions up
 var city = "";
-var cities = "";
+var cities = [];
 var citiesDiv = $("#searched_cities_container");
 
 init();
